@@ -1,6 +1,6 @@
 
 
-#Laver en klasse til brikkerne som viser hvilket hold, type og om den kan dræbes eller ej 
+#Laver en klasse til brikkerne som viser hvilket hold, type og om den kan dræbes eller ej
 class Brik:
     def __init__(self, hold, type, billede, kandræbes=False):
         self.hold = hold
