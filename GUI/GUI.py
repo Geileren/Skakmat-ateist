@@ -1,4 +1,4 @@
-
+import Data
 from tkinter import *
 
 class Bræt():
@@ -24,3 +24,5 @@ def main():
     root.mainloop()
 
 main()
+
+

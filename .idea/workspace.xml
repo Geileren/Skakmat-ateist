@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -34,11 +41,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616069744571</updated>
-      <workItem from="1616069745627" duration="1788000" />
+      <workItem from="1616069745627" duration="3552000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="806" y="345" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616072085640">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="806" y="345" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1616072085640" />
   </component>
 </project>
