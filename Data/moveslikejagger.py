@@ -1,3 +1,3 @@
-import Brikker
+import Data.Brikker as brikker
 
-def vælg_træk(Brik )
+def vælg_træk(brikker.Brik )
