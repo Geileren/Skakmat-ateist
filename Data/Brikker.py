@@ -1,13 +1,12 @@
 
 
-
+#Laver en klasse til brikkerne som viser hvilket hold, type og om den kan dræbes eller ej 
 class Brik:
     def __init__(self, hold, type, billede, kandræbes=False):
         self.hold = hold
         self.type = type
         self.kandræbes = kandræbes
         self.billede = billede
-
 
 sb = Brik("s", "b", "sort_bonde.noget")
 hb = Brik("h", "b", "hvid_bonde.noget")
