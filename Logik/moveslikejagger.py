@@ -16,7 +16,7 @@ def fremhæv(Bræt):
     return fremhævet
 
 
-
+#Tjekker Hvilket hold der er valgt
 def tjek_hold(træk, indeks):
     row, col = indeks
     if træk%2 == 0:
@@ -27,7 +27,7 @@ def tjek_hold(træk, indeks):
                 return True
 
 
-
+#Funktion der henter træksættet til den valgte brik
 def vælg_træk(brikker.Brik, indeks, træk):
     if tjek_hold(træk, indeks):
         if brikker.Brik.type == "b":
