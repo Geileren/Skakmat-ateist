@@ -6,7 +6,7 @@ def fremhæv(Bræt):
     for i range(len(Bræt)):
         for j in range(len(Bræt[0])):
             if Bræt[i][j] == "x":
-                fremhøvet.append((i, j))
+                fremhævet.append((i, j))
             else:
                 try:
                     if Bræt[i][j].kandræbes
@@ -47,3 +47,5 @@ def vælg_træk(brikker.Brik, indeks, træk):
 
         if brikker.Brik.type == "l"
             return fremhævet(løber_træk(indeks))
+
+
