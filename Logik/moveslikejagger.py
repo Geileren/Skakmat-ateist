@@ -3,7 +3,7 @@ import Data.Brikker as brikker
 
 
 #Funktion der laver en liste ud fra det specifikke træk sæt til den valgte brik og returnere en liste
-#over mulige træk som et 2d array, altså i og j er vores x og y koordinat på brættet. 
+#over mulige træk som et 2d array, altså i og j er vores x og y koordinat på brættet.
 def fremhæv(Bræt):
     fremhævet = []
     for i range(len(Bræt)):
