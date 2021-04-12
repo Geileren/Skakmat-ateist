@@ -15,12 +15,12 @@ class Bræt():
         for y in range(8):
             for x in range(8):
                 if (y % 2 + x) % 2 == 0:
-                    self.table_fields.append(Button(self.root, width=5, height=2, bg="white"))
+                    self.table_fields.append(Button(self.root, width=5, height=2))
                     self.table_fields[len(self.table_fields)-1].grid(column=x, row=y)
                     if y == 1:
                         self.table_fields[len(self.table_fields)-1].config(image=self.pawnimage)
                 else:
-                    self.table_fields.append(Button(self.root, width=5, height=2, bg="black").grid(column=x, row=y))
+                    self.table_fields.append(Button(self.root, width=5, height=2).grid(column=x, row=y))
 # width=5, height=2, bg="white"
 def main():
     root = Tk()
