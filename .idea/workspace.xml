@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="17a564db-7af2-4e3b-8ff8-a0213b9b7bb3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logik/moveslikejagger.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logik/moveslikejagger.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +12,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="f7fbce7d-074b-43ab-ae60-78ea1287a819" />
   <component name="ProjectId" id="1q6SF3l4OEZKANxecEU1HlHZXyn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -23,7 +23,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Studieretningscase/Studieretningscase opgave.docx" />
   </component>
   <component name="RunManager">
     <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -63,7 +63,9 @@
       <option name="presentableId" value="Default" />
       <updated>1616398441240</updated>
       <workItem from="1616398444956" duration="4865000" />
-      <workItem from="1617186757571" duration="2454000" />
+      <workItem from="1617186757571" duration="2503000" />
+      <workItem from="1617701280379" duration="3119000" />
+      <workItem from="1618208555132" duration="1150000" />
     </task>
     <servers />
   </component>
