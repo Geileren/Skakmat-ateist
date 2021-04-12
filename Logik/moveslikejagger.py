@@ -38,24 +38,28 @@ def tjek_hold(træk, indeks):
 
 #Funktion der henter træksættet til den valgte brik, dette gør den ud fra nogle simple if funktioner
 #Som egentlig bare spørger efter hvilken brik der er tale om ud fra det objekt vi har lavet til brikken
+#Grunden til at vi tjekker hold ved bonden er fordi de kan gå i en retning og derfor vil det være nemmere at lave to forskellgie funktioner til dem efter hvilket hold de er på
 def vælg_træk(brikker.Brik, indeks, træk):
-    if tjek_hold(træk, indeks):
-        if brikker.Brik.type == "b":
-            if brikker.Brik.hold == "s":
+    if tjek_hold(træk, indeks): #Kører tjek hold funktionen
+        if brikker.Brik.type == "b": #Hvis brikken er af typen bonde
+            if brikker.Brik.hold == "s": #Hvis brikken er af farven sort
                 return fremhæv(bonde_træk_s(indeks))
-            else:
+            else: #Ellers må brikken være hvid
                 return fremhæv(bonde_træk_h(indeks))
 
-        if brikker.Brik.type == "d"
-            return fremhæv(dronning_træk(indeks))
+        if brikker.Brik.type == "d": #Hvis brikken er af typen Dronning
+            return fremhæv(dronning_træk(indeks)) #Fremhæver dronningstræk ud fra fremhæv funktionen og dronningstræk funktion
 
-        if brikker.Brik.type == "k"
-            return fremhæv(konge_træk(indeks))
+        if brikker.Brik.type == "k": #Hvis brikken er af typen Konge
+            return fremhæv(konge_træk(indeks)) #Fremhæver kongenstræk ud fra fremhæv funktionen og kongenstræk funktion
 
-        if brikker.Brik.type == "s"
-            return fremhæv(springer_træk(indeks))
+        if brikker.Brik.type == "s": #Hvis brikken er af typen Springer
+            return fremhæv(springer_træk(indeks)) #Fremhæver springerenstræk ud fra fremhæv funktionen og springerenstræk funktion
 
-        if brikker.Brik.type == "l"
-            return fremhæv(løber_træk(indeks))
+        if brikker.Brik.type == "l": #hvis brikken er af typen Løber
+            return fremhæv(løber_træk(indeks)) #Fremhæver løberenstræk ud fra fremhæv funktionen og Løberenstræk funktion
+
+        if brikker.Brik.type == "t": #Hvis brikken er af typen tårn
+            return fremhæv(tårn_træk(indeks)) #Fremhæver tårnetstræk ud fra fremhæv funktionen og tårnetstræk funktion
 
 
