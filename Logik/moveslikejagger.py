@@ -10,18 +10,18 @@ def på_bord(position):
 #Funktion der laver en liste ud fra det specifikke træk sæt til den valgte brik og returnere en liste
 #over mulige træk som et 2d array, altså i og j er vores x og y koordinat på brættet.
 def fremhæv(Bræt):
-    fremhævet = []
-    for i range(len(Bræt)):
-        for j in range(len(Bræt[0])):
-            if Bræt[i][j] == "x":
-                fremhævet.append((i, j))
-            else:
-                try:
-                    if Bræt[i][j].kandræbes
+    fremhævet = [] #Opretter en liste over potentielle træk
+    for i range(len(Bræt)): #Kører et for loop på selve listen for at få en over bredden
+        for j in range(len(Bræt[0])): #Kører derefter et for loop på den første i listen for at få en over længden
+            if Bræt[i][j] == "x": #Hvis der er nogle af de felter den tjekker for som er markeret med et x så tilføj dem til listen
+                fremhævet.append((i, j)) #Tilføjer dem til listen
+            else: #Ellers
+                try: #prøv at spørg
+                    if Bræt[i][j].kandræbes #Hvis det er en brik om den kan dræbes hvis ja tilføj til liste
                         fremhævet.append((i, j))
                 except:
-                    pass
-    return fremhævet
+                    pass #Altid have et except statement med et pass for safety
+    return fremhævet #returner listen med potentielle træk for den enekelte brik
 
 
 #Tjekker Hvilket hold der er valgt, dette gør den ved at finde ud af hvilken runde det er først.
