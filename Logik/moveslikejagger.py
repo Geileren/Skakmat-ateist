@@ -3,8 +3,8 @@ import Data.Brikker as brikker
 
 #Returnerer sandt hvis det træk der er regnet ud er indenfor brættets længde og bredde ved at opfylde kravene der hedder at det skal være større end -1 både længde og bredde
 #og det skal være mindre end 8 både længde og bredde da python lister jo er 0 indekserede selvom brættet er 8x8 lang og bred
-def på_bord(position):
-    if position[0] > -1 and position[1] > -1 and position[0] < 8 and position[1] < 8:
+def på_bord(placering):
+    if placering[0] > -1 and placering[1] > -1 and placering[0] < 8 and placering[1] < 8:
         return True
 
 #Funktion der laver en liste ud fra det specifikke træk sæt til den valgte brik og returnere en liste
@@ -63,3 +63,4 @@ def vælg_træk(brikker.Brik, indeks, træk):
             return fremhæv(tårn_træk(indeks)) #Fremhæver tårnetstræk ud fra fremhæv funktionen og tårnetstræk funktion
 
 
+def bonde_træk_h(indeks):
