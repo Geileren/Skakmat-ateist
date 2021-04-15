@@ -69,16 +69,16 @@ def bonde_træk_s(position):
             Bræt[position[0]+2][position[1]] = 'x '
     #Før laver vi en liste med de 3 positioner foran bonden for at se om der er noget den kan dræbe, dette gør vi
     #ved at oprette tre forskellige sæt koordinator som er lige foran brikken og -1 til den ene side og 2 til den anden side.
-    pladserforanb = [[position[0]+1, position[1] + i] for i in range(-1,2)]
+    pladserforans = [[position[0]+1, position[1] + i] for i in range(-1,2)]
 
-    for placering in pladserforanb: #Tjekker for alle tre positioner fra listen vi lavede oven over
+    for placering in pladserforans: #Tjekker for alle tre positioner fra listen vi lavede oven over
         if på_bord(placering): #Tjekker om placeringerne er på brættet
-            if pladserforanb.index(placering) % 2 == 0: #Vi vil kun have de to placeringer der er diagonalt for brikken derfor ikke den i midten så vi
+            if pladserforans.index(placering) % 2 == 0: #Vi vil kun have de to placeringer der er diagonalt for brikken derfor ikke den i midten så vi
                                                         #Benytter os af .index som giver tilbage deres placering i listen og den første er 0 og nr 3 er 2
                                                         #Disse to tal går op i 2 og giver 0 rest tilbage derfor vil de blive sendt videre mens den position
                                                         #lige over for vil returnere en rest af 1 og ikke sendt videre
                 try:
-                    if Bræt[position[0]][position[1]].hold != "s": #Tjekker om brikken der står der er samme hold
+                    if Bræt[position[0]][position[1]].hold == "h": #Tjekker om brikken er modstander holdet
                         Bræt[position[0]][position[1]].kandræbes = True #Hvis ikke sætter vi brikken som den kan dræbes
                 except:
                     pass #Altid godt at have et except statement med et pass så koden ikke sidder fast, jeg har lært noget jørn
@@ -86,3 +86,24 @@ def bonde_træk_s(position):
                 if Bræt[position[0]][position[1]] == '': #tjekker om der er fri plads på feltet foran og her ligger vi jo ikke en til da vi allerede har gjort det oven over
                     Bræt[position[0]][position[1]] = 'x' #Hvis der er frit markeres dette med et x for at signalere seneere hen at det er et muligt træk
         return Bræt #Returnere listen bræt som den ser ud nu
+
+def bonde_træk_h(position):
+    if position[0] == 6:
+        if Bræt[position[0]-2][position[1]] == ' ' and Bræt[position[0]-1][position[1]] == ' ':
+            Bræt[position[0]-2][position[1]] = 'x'
+
+        pladserforanh = [[position[0]-1, position[1]-i] for i in range(-1,2)]
+
+        for palcering in pladserforanh:
+            if på_bord(placering):
+                if pladserforanh.index(placering) % 2 == 0:
+                    try:
+                        if Bræt[position[0]][position[1]].hold == "s":
+                            Bræt[position[0]][position[1]].kandræbes = True
+                    except:
+                        pass
+                else:
+                    if Bræt[position[0]][position[1]] == '':
+                        Bræt[position[0]][position[1]] == 'x'
+
+    return Bræt
