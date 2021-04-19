@@ -87,6 +87,7 @@ def bonde_træk_s(position):
                     Bræt[position[0]][position[1]] = 'x' #Hvis der er frit markeres dette med et x for at signalere seneere hen at det er et muligt træk
         return Bræt #Returnere listen bræt som den ser ud nu
 
+#Samme funktion som oven over udover at de hvide starter et andet sted altså i bund så de arbejder sig op af listen
 def bonde_træk_h(position):
     if position[0] == 6:
         if Bræt[position[0]-2][position[1]] == ' ' and Bræt[position[0]-1][position[1]] == ' ':
@@ -106,4 +107,23 @@ def bonde_træk_h(position):
                     if Bræt[position[0]][position[1]] == '':
                         Bræt[position[0]][position[1]] == 'x'
 
-    return Bræt
+    return brikker.Bræt
+
+def tårn_træk(position):
+    #Laver fire lister som sættes sammen til en liste for at lave tårnets kryds som den kan flytte sig i
+    kryds = [[[position[0] + i, position[1]] for i in range(1,8 - position[0])],  #Den første liste er ud til højre derfor tjekker vi fra 1 til 8 minus der hvor den står da vi så ikke tjekker ud over brættets kant
+             [[position[0] - i, position[1]] for i in range(1,position[0] + 1)],  #Den anden liste er ud til venstre for den som tjekker fra 1 til dens position 0 ved at trække fra og vi lægger så 1 til da listerne er 0 indekserede
+             [[position[0], position[1] + i] for i in range(1,8 - position[1])],  #Den tredje liste tjekker op af brættet og her gør vi det samme som i lsite udover at det er emd andet koordinatet
+             [[position[0], position[1] - i] for i in range(1, position[1] + 1)]] #Den fjerde liste tjekker ned af brættet og her gør vi det samme som i liste 2 udover med anden koordinatet
+
+    for retning in kryds: #Deler den store liste op i de forskellige retninger
+        for placering in retning: #Tjekker for alle individuelle placeringer i de her retninger
+            if på_bord(placering): #Tjekker om de er på bordet for en sikkerhedsskyld
+                if Bræt[placering[0]][placering[1]] == ' ': #Hvis der ikke står noget
+                    Bræt[placering[0]][placering[1]] = 'x ' #Så placerer vi et x
+                else:
+                    if Bræt[placering[0]][placering[1]].brikker.Brik.hold != Bræt[position[0]][position[1]].brikker.Brik.hold: #Hvis tårnets hold ikke er det samme som den brik der står på feltet
+                        Bræt[placering[0]][placering[1]].brikker.Brik.kandræbes = True #Ændre den briks attribute kandræbes til at være sand
+
+                    break #Altid godt at have et break statement
+            return brikker.Bræt #returnere brættet 
