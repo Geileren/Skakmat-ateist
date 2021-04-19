@@ -2,14 +2,63 @@ import tkinter
 from tkinter import *
 #from PIL import Image, ImageTk
 import sys
+class Felt():
+    def __init__(self, root, bræt, billede, x, y):
+        self.bræt = bræt
+        self.bræk = billede
+        self.x = x
+        self.y = y
+        self.button = Button(root, image=self.bræk, command=self.tryk)
 
-class test:
+
+
+
+    def skift(self, billede):
+        self.bræk = billede
+        self.button.config(image=self.bræk)
+
+    def grid(self, x, y):
+        self.button.grid(column=x, row=y)
+
+    def tryk(self):
+        if self.bræt.flyt_bræk == False:
+            self.bræt.flyt_bræk = True
+            self.bræt.nuværende_bræk = self.bræk
+            self.bræt.flyt_bræk_pos = self.x, self.y
+            self.button.config(relief="sunken", bg="yellow")
+        elif self.bræt.flyt_bræk == True:
+            if self.x == self.bræt.flyt_bræk_pos[0] and self.y == self.bræt.flyt_bræk_pos[1]:
+                self.bræt.flyt_bræk = False
+                self.button.config(relief="raised", bg="white")
+            else:
+                #begynd flyt, skal snakke med logik
+                pass
+
+
+
+
+
+class Bræt:
 
     def __init__(self, root, brækker):
         self.root = root
 
         self.tildel_billeder(brækker)
+        self.gen_start_lister()
         self.table_fields = []
+        self.flyt_bræk = False
+        self.nuværende_bræk = ""
+        self.flyt_bræk_pos = ""
+
+
+    def gen_start_lister(self):
+        self.sort_start = [self.sort_tårn_lys, self.sort_springer_mørk, self.sort_løber_lys, self.sort_dronning_mørk, self.sort_konge_lys, self.sort_løber_mørk, self.sort_springer_lys, self.sort_tårn_mørk]
+        # liste svarrende til startpositionen for sorte brækker på række 8
+        self.hvid_start = [self.hvid_tårn_mørk, self.hvid_springer_lys, self.hvid_løber_mørk, self.hvid_dronning_lys, self.hvid_konge_mørk, self.hvid_løber_lys, self.hvid_springer_mørk, self.hvid_tårn_lys]
+        # liste svarrende til startpositionen for sorte brækker på række 1
+        self.sort_start_bønder = self.sort_bonde_mørk, self.sort_bonde_lys
+
+        self.hvid_start_bønder = self.hvid_bonde_lys, self.hvid_bonde_mørk
 
     def tildel_billeder(self, brækker):
         self.sort_bonde_mørk = brækker[0]
@@ -52,84 +101,35 @@ class test:
         self.hvid_dronning_lys = brækker[25]
 
     def lav(self):
-
         for y in range(1,9):
-            print(y)
             for x in range(1,9):
-                if y == 1:
-                    if x == 1:
-                        self.table_fields.append(Button(self.root, image=self.sort_tårn_lys))
+                if y == 1:# tegner alle startbrækkerne i række 1
+                    self.table_fields.append(Felt(self.root, self, self.hvid_start[x-1], x, y))
 
-                    elif x == 2:
-                        self.table_fields.append(Button(self.root, image=self.sort_springer_mørk))
+                elif y == 2:
+                    self.table_fields.append(Felt(self.root, self, self.hvid_start_bønder[x%2], x, y))
 
-                    elif x == 3:
-                        self.table_fields.append(Button(self.root, image=self.sort_løber_lys))
+                elif y == 7:
+                    self.table_fields.append(Felt(self.root, self, self.sort_start_bønder[x%2], x, y))
 
-                    elif x == 4:
-                        self.table_fields.append(Button(self.root, image=self.sort_dronning_mørk))
+                elif y == 8:# tegner alle startbrækkerne i række 8
+                    self.table_fields.append(Felt(self.root, self, self.sort_start[x - 1], x, y))
 
-                    elif x == 5:
-                        self.table_fields.append(Button(self.root, image=self.sort_konge_lys))
+                elif (y + x) % 2 == 0: #tegner alle tomme mørke felter
+                    self.table_fields.append(Felt(self.root, self, self.tom_mørk, x, y))
 
-                    elif x == 6:
-                        self.table_fields.append(Button(self.root, image=self.sort_løber_mørk))
+                else: # tegner de sidste felter, altså tomme lyse
+                    self.table_fields.append(Felt(self.root, self, self.tom_lys, x, y))
 
-                    elif x == 7:
-                        self.table_fields.append(Button(self.root, image=self.sort_springer_lys))
-
-                    elif x == 8:
-                        self.table_fields.append(Button(self.root, image=self.sort_tårn_mørk))
-                    self.table_fields[len(self.table_fields) - 1].grid(column=x, row=y)
-                elif y == 8:
-                    if x == 1:
-                        self.table_fields.append(Button(self.root, image=self.hvid_tårn_mørk))
-
-                    elif x == 2:
-                        self.table_fields.append(Button(self.root, image=self.hvid_springer_lys))
-
-                    elif x == 3:
-                        self.table_fields.append(Button(self.root, image=self.hvid_løber_mørk))
-
-                    elif x == 4:
-                        self.table_fields.append(Button(self.root, image=self.hvid_dronning_lys))
-
-                    elif x == 5:
-                        self.table_fields.append(Button(self.root, image=self.hvid_konge_mørk))
-
-                    elif x == 6:
-                        self.table_fields.append(Button(self.root, image=self.hvid_løber_lys))
-
-                    elif x == 7:
-                        self.table_fields.append(Button(self.root, image=self.hvid_springer_mørk))
-
-                    elif x == 8:
-                        self.table_fields.append(Button(self.root, image=self.hvid_tårn_lys))
-
-                    self.table_fields[len(self.table_fields) - 1].grid(column=x, row=y)
-
-                elif (y % 2 + x) % 2 == 0:
-                    self.table_fields.append(Button(self.root, image=self.tom_lys))
-                    self.table_fields[len(self.table_fields)-1].grid(column=x, row=y)
-                    if y == 2:
-                        self.table_fields[len(self.table_fields)-1].config(image=self.sort_bonde_mørk)
-                    elif y == 7:
-                        self.table_fields[len(self.table_fields) - 1].config(image=self.hvid_bonde_mørk)
-
-                else:
-                    self.table_fields.append(Button(self.root, image=self.tom_mørk))
-                    self.table_fields[len(self.table_fields) - 1].grid(column=x, row=y)
-                    if y == 2:
-                        self.table_fields[len(self.table_fields)-1].config(image=self.sort_bonde_lys)
-                    elif y == 7:
-                        self.table_fields[len(self.table_fields) - 1].config(image=self.hvid_bonde_lys)
+                self.table_fields[len(self.table_fields) - 1].grid(x, y)
+                # gridder knappen ud fra tilhørende koordinater
 
 
 
 
 
 
-def gen_picts(path, size):
+def gen_picts(path, size): #importere og subsampler alle billederne
     brækker = []
     sort_bonde_mørk = PhotoImage(file=rf"{path}\Assets\sort_bonde_lys.png")
     brækker.append(sort_bonde_mørk.subsample(size, size))
@@ -217,8 +217,9 @@ def main():
     path = sys.path[0]
 
 
-    b = test(root, gen_picts(path, 3))
+    b = Bræt(root, gen_picts(path, 3))
     b.lav()
     mainloop()
 
 main()
+
