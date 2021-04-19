@@ -53,30 +53,81 @@ class test:
 
     def lav(self):
 
-        for y in range(8):
-            for x in range(8):
-                if (y % 2 + x) % 2 == 0:
+        for y in range(1,9):
+            print(y)
+            for x in range(1,9):
+                if y == 1:
+                    if x == 1:
+                        self.table_fields.append(Button(self.root, image=self.sort_tårn_lys))
+
+                    elif x == 2:
+                        self.table_fields.append(Button(self.root, image=self.sort_springer_mørk))
+
+                    elif x == 3:
+                        self.table_fields.append(Button(self.root, image=self.sort_løber_lys))
+
+                    elif x == 4:
+                        self.table_fields.append(Button(self.root, image=self.sort_dronning_mørk))
+
+                    elif x == 5:
+                        self.table_fields.append(Button(self.root, image=self.sort_konge_lys))
+
+                    elif x == 6:
+                        self.table_fields.append(Button(self.root, image=self.sort_løber_mørk))
+
+                    elif x == 7:
+                        self.table_fields.append(Button(self.root, image=self.sort_springer_lys))
+
+                    elif x == 8:
+                        self.table_fields.append(Button(self.root, image=self.sort_tårn_mørk))
+                    self.table_fields[len(self.table_fields) - 1].grid(column=x, row=y)
+                elif y == 8:
+                    if x == 1:
+                        self.table_fields.append(Button(self.root, image=self.hvid_tårn_mørk))
+
+                    elif x == 2:
+                        self.table_fields.append(Button(self.root, image=self.hvid_springer_lys))
+
+                    elif x == 3:
+                        self.table_fields.append(Button(self.root, image=self.hvid_løber_mørk))
+
+                    elif x == 4:
+                        self.table_fields.append(Button(self.root, image=self.hvid_dronning_lys))
+
+                    elif x == 5:
+                        self.table_fields.append(Button(self.root, image=self.hvid_konge_mørk))
+
+                    elif x == 6:
+                        self.table_fields.append(Button(self.root, image=self.hvid_løber_lys))
+
+                    elif x == 7:
+                        self.table_fields.append(Button(self.root, image=self.hvid_springer_mørk))
+
+                    elif x == 8:
+                        self.table_fields.append(Button(self.root, image=self.hvid_tårn_lys))
+
+                    self.table_fields[len(self.table_fields) - 1].grid(column=x, row=y)
+
+                elif (y % 2 + x) % 2 == 0:
                     self.table_fields.append(Button(self.root, image=self.tom_lys))
                     self.table_fields[len(self.table_fields)-1].grid(column=x, row=y)
-                    if y == 1:
+                    if y == 2:
                         self.table_fields[len(self.table_fields)-1].config(image=self.sort_bonde_mørk)
-                    elif y == 6:
+                    elif y == 7:
                         self.table_fields[len(self.table_fields) - 1].config(image=self.hvid_bonde_mørk)
 
                 else:
                     self.table_fields.append(Button(self.root, image=self.tom_mørk))
                     self.table_fields[len(self.table_fields) - 1].grid(column=x, row=y)
-                    if y == 1:
+                    if y == 2:
                         self.table_fields[len(self.table_fields)-1].config(image=self.sort_bonde_lys)
-                    elif y == 6:
+                    elif y == 7:
                         self.table_fields[len(self.table_fields) - 1].config(image=self.hvid_bonde_lys)
 
 
 
 
-        #a = Button(self.root)
-        #a.grid(column=1, row=1)
-        #a.config(image=self.pawn)
+
 
 def gen_picts(path, size):
     brækker = []
