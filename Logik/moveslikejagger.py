@@ -94,7 +94,7 @@ def bonde_træk_h(position):
 
         pladserforanh = [[position[0]-1, position[1]-i] for i in range(-1,2)]
 
-        for palcering in pladserforanh:
+        for placering in pladserforanh:
             if på_bord(placering):
                 if pladserforanh.index(placering) % 2 == 0:
                     try:
