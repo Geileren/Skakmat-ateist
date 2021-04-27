@@ -170,3 +170,17 @@ def konge_træk(position):
                     if b.Bræt[position[0] - 1 + i][position[1] - 1 + j].b.Brik.hold != b.Bræt[position[0]][position[1]].b.Brik.hold: #Hvis der er noget så tjekker vi om det er samme hold
                         b.Bræt[placering[0]][placering[1]].b.Brik.kandræbes = True #Hvis ikke så sætter vi brikken der står der til at den kan dræbes
     return b.Bræt
+
+#funktion tjekker et 5x5 grid rundt omkring springeren ligesom ved kongen udover at her tjekker vi valide moves ved at bruge pythagoras
+# Så alt hvor i og j i anden giver 5 er altså et valid træk for springeren
+def springer_træk(position):
+    for i in range(-2,3): #Kører fra -2 til 3 fordi springeren skal være i midten
+        for j in range(-2,3): #igen kører -2 til 3 fordi springeren skal være i midten
+            if i**2 + j**2 == 5: #Pythagoras tjekket sker her
+                if på_bord((position[0]+i,position[1]+j)): #tjekker om positionen overhovedet er på brættet
+                    if b.Bræt[position[0]][position[1]] == ' ': #Som altid hvis der ikke er noget
+                        b.Bræt[position[0]+i][position[1]] = 'x ' #så tilføjer vi et x
+                    else:
+                        if  b.Bræt[position[0]+i][position[1]+j].b.Brik.hold != b.Bræt[position[0]][position[1]].b.Brik.hold: #Hvis der er noget så tjekker vi om det er samme hold
+                        b.Bræt[placering[0]][placering[1]].b.Brik.kandræbes = True #Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
+        return b.Bræt
