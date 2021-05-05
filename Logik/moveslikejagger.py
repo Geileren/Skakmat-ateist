@@ -9,15 +9,15 @@ def på_bord(placering):
 
 #Funktion der laver en liste ud fra det specifikke træk sæt til den valgte brik og returnere en liste
 #over mulige træk som et 2d array, altså i og j er vores x og y koordinat på brættet.
-def fremhæv(Bræt):
+def fremhæv(b.Bræt):
     fremhævet = [] #Opretter en liste over potentielle træk
-    for i range(len(Bræt)): #Kører et for loop på selve listen for at få en over bredden
-        for j in range(len(Bræt[0])): #Kører derefter et for loop på den første i listen for at få en over længden
-            if Bræt[i][j] == "x": #Hvis der er nogle af de felter den tjekker for som er markeret med et x så tilføj dem til listen
+    for i in range(len(b.Bræt)): #Kører et for loop på selve listen for at få en over bredden
+        for j in range(len(b.Bræt[0])): #Kører derefter et for loop på den første i listen for at få en over længden
+            if b.Bræt[i][j] == "x": #Hvis der er nogle af de felter den tjekker for som er markeret med et x så tilføj dem til listen
                 fremhævet.append((i, j)) #Tilføjer dem til listen
             else: #Ellers
                 try: #prøv at spørg
-                    if Bræt[i][j].kandræbes: #Hvis det er en brik om den kan dræbes hvis ja tilføj til liste
+                    if b.Bræt[i][j].kandræbes: #Hvis det er en brik om den kan dræbes hvis ja tilføj til liste
                         fremhævet.append((i, j))
                 except:
                     pass #Altid have et except statement med et pass for safety
@@ -40,27 +40,27 @@ def tjek_hold(træk, position):
 #Som egentlig bare spørger efter hvilken brik der er tale om ud fra det objekt vi har lavet til brikken
 #Grunden til at vi tjekker hold ved bonden er fordi de kan gå i en retning og derfor vil det være nemmere at lave to forskellgie funktioner til dem efter hvilket hold de er på
 def vælg_træk(b.Brik, position, træk):
-    if tjek_hold(træk, indeks): #Kører tjek hold funktionen
+    if tjek_hold(træk, position): #Kører tjek hold funktionen
         if b.Brik.type == "b": #Hvis brikken er af typen bonde
             if b.Brik.hold == "s": #Hvis brikken er af farven sort
                 return fremhæv(bonde_træk_s(position))
             else: #Ellers må brikken være hvid
                 return fremhæv(bonde_træk_h(position))
 
-        if b.Brik.type == "d": #Hvis brikken er af typen Dronning
-            return fremhæv(dronning_træk(position)) #Fremhæver dronningstræk ud fra fremhæv funktionen og dronningstræk funktion
+    if b.Brik.type == "d": #Hvis brikken er af typen Dronning
+        return fremhæv(dronning_træk(position)) #Fremhæver dronningstræk ud fra fremhæv funktionen og dronningstræk funktion
 
-        if b.Brik.type == "k": #Hvis brikken er af typen Konge
-            return fremhæv(konge_træk(position)) #Fremhæver kongenstræk ud fra fremhæv funktionen og kongenstræk funktion
+    if b.Brik.type == "k": #Hvis brikken er af typen Konge
+        return fremhæv(konge_træk(position)) #Fremhæver kongenstræk ud fra fremhæv funktionen og kongenstræk funktion
 
-        if b.Brik.type == "s": #Hvis brikken er af typen Springer
-            return fremhæv(springer_træk(position)) #Fremhæver springerenstræk ud fra fremhæv funktionen og springerenstræk funktion
+    if b.Brik.type == "s": #Hvis brikken er af typen Springer
+        return fremhæv(springer_træk(position)) #Fremhæver springerenstræk ud fra fremhæv funktionen og springerenstræk funktion
 
-        if b.Brik.type == "l": #hvis brikken er af typen Løber
-            return fremhæv(løber_træk(position)) #Fremhæver løberenstræk ud fra fremhæv funktionen og Løberenstræk funktion
+    if b.Brik.type == "l": #hvis brikken er af typen Løber
+        return fremhæv(løber_træk(position)) #Fremhæver løberenstræk ud fra fremhæv funktionen og Løberenstræk funktion
 
-        if b.Brik.type == "t": #Hvis brikken er af typen tårn
-            return fremhæv(tårn_træk(position)) #Fremhæver tårnetstræk ud fra fremhæv funktionen og tårnetstræk funktion
+    if b.Brik.type == "t": #Hvis brikken er af typen tårn
+        return fremhæv(tårn_træk(position)) #Fremhæver tårnetstræk ud fra fremhæv funktionen og tårnetstræk funktion
 
 
 def bonde_træk_s(position):
@@ -93,7 +93,7 @@ def bonde_træk_h(position):
         if b.Bræt[position[0]-2][position[1]] == ' ' and b.Bræt[position[0]-1][position[1]] == ' ':
             b.Bræt[position[0]-2][position[1]] = 'x'
 
-        pladserforanh = [[position[0]-1, position[1]-i] for i in range(-1,2)]
+    pladserforanh = [[position[0]-1, position[1]-i] for i in range(-1,2)]
 
     for placering in pladserforanh:
         if på_bord(placering):
@@ -111,10 +111,10 @@ def bonde_træk_h(position):
 
 def tårn_træk(position):
     #Laver fire lister som sættes sammen til en liste for at lave tårnets kryds som den kan flytte sig i
-    plus = [[[position[0]+i, position[1]] for i in range(1,8-position[0])],  #Den første liste er ud til højre derfor tjekker vi fra 1 til 8 minus der hvor den står da vi så ikke tjekker ud over brættets kant
-             [[position[0]-i, position[1]] for i in range(1,position[0]+1)],  #Den anden liste er ud til venstre for den som tjekker fra 1 til dens position 0 ved at trække fra og vi lægger så 1 til da listerne er 0 indekserede
-             [[position[0], position[1]+i] for i in range(1,8-position[1])],  #Den tredje liste tjekker op af brættet og her gør vi det samme som i lsite udover at det er emd andet koordinatet
-             [[position[0], position[1]-i] for i in range(1, position[1]+1)]] #Den fjerde liste tjekker ned af brættet og her gør vi det samme som i liste 2 udover med anden koordinatet
+    plus = [[[position[0]+i, position[1]] for i in range(1,8)],  #Den første liste er ud til højre derfor tjekker vi fra 1 til 8 minus der hvor den står da vi så ikke tjekker ud over brættets kant
+             [[position[0]-i, position[1]] for i in range(1,8)],  #Den anden liste er ud til venstre for den som tjekker fra 1 til dens position 0 ved at trække fra og vi lægger så 1 til da listerne er 0 indekserede
+             [[position[0], position[1]+i] for i in range(1,8)],  #Den tredje liste tjekker op af brættet og her gør vi det samme som i lsite udover at det er emd andet koordinatet
+             [[position[0], position[1]-i] for i in range(1,8)]] #Den fjerde liste tjekker ned af brættet og her gør vi det samme som i liste 2 udover med anden koordinatet
 
     for retning in plus: #Deler den store liste op i de forskellige retninger
         for placering in retning: #Tjekker for alle individuelle placeringer i de her retninger
