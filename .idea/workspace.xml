@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="17a564db-7af2-4e3b-8ff8-a0213b9b7bb3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logik/moveslikejagger.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logik/moveslikejagger.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +146,7 @@
       <workItem from="1618663058630" duration="7873000" />
       <workItem from="1619422725590" duration="101000" />
       <workItem from="1619504598736" duration="9166000" />
-      <workItem from="1620199401207" duration="1652000" />
+      <workItem from="1620199401207" duration="2720000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'main' of github.com:Geileren/Skakmat-ateist into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/Skakmat-ateist.iml&#10;#&#9;.idea/misc.xml&#10;#&#9;.idea/workspace.xml">
       <created>1618486386251</created>
