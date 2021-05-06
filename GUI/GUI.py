@@ -38,16 +38,26 @@ class Felt():
             self.bræt.flyt_brik = True
             self.bræt.nuværende_brik = self.brik
             self.bræt.flyt_brik_pos = self.x, self.y
+            self.bræt.eks_felt = self
             self.button.config(relief="sunken", bg="yellow")
         elif self.bræt.flyt_brik == True:
             if self.x == self.bræt.flyt_brik_pos[0] and self.y == self.bræt.flyt_brik_pos[1]:
                 self.bræt.flyt_brik = False
+                self.bræt.eks_felt = ""
                 self.button.config(relief="raised", bg="white")
             else:
                 #begynd flyt, skal snakke med logik
+
                 self.skift(self.bræt.nuværende_brik)
                 self.check_farve()
-                pass
+                self.bræt.tøm_felt()
+
+
+    def tøm(self):
+        self.bræt.flyt_brik = False
+        self.skift(self.brikker[12])
+        self.check_farve()
+        self.button.config(relief="raised", bg="white")
 
 
 
@@ -64,8 +74,10 @@ class Bræt:
         self.flyt_brik = False
         self.nuværende_brik = ""
         self.flyt_brik_pos = ""
+        self.eks_felt = ""
 
-
+    def tøm_felt(self):
+        self.eks_felt.tøm()
 
     def gen_start_lister(self):
         self.sort_start = [self.sort_tårn_lys, self.sort_springer_mørk, self.sort_løber_lys, self.sort_dronning_mørk, self.sort_konge_lys, self.sort_løber_mørk, self.sort_springer_lys, self.sort_tårn_mørk]

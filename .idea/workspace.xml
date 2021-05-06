@@ -160,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620302710176</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Ændrede stavefejl">
+      <created>1620303134284</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1620303134284</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,11 +188,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'main' of github.com:Geileren/Skakmat-ateist into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/Skakmat-ateist.iml&#10;#&#9;.idea/misc.xml&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="fixed GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed GUI" />
+    <MESSAGE value="Ændrede stavefejl" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ændrede stavefejl" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Skakmat_ateist$Test__1_.coverage" NAME="Test (1) Coverage Results" MODIFIED="1618819294620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logik" />
-    <SUITE FILE_PATH="coverage/Skakmat_ateist$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1620303023066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GUI" />
+    <SUITE FILE_PATH="coverage/Skakmat_ateist$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1620303549344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GUI" />
     <SUITE FILE_PATH="coverage/Skakmat_ateist$Test.coverage" NAME="Test Coverage Results" MODIFIED="1618215296332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
