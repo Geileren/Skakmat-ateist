@@ -3,7 +3,8 @@ from tkinter import *
 #from PIL import Image, ImageTk
 import sys
 class Felt():
-    def __init__(self, root, bræt, billede, x, y):
+    def __init__(self, root, bræt, billede, x, y, brækker):
+        self.brækker = brækker
         self.bræt = bræt
         self.bræk = billede
         self.x = x
@@ -11,6 +12,17 @@ class Felt():
         self.button = Button(root, image=self.bræk, command=self.tryk)
 
 
+    def check_farve(self):
+        if (self.x + self.y) % 2 == 0:
+            if self.brækker.index(self.bræk) % 2 != 0:
+                self.skift(self.brækker[self.brækker.index(self.bræk) - 1])
+            else:
+                pass
+        else:
+            if self.brækker.index(self.bræk) % 2 != 1:
+                self.skift(self.brækker[self.brækker.index(self.bræk) + 1])
+            else:
+                pass
 
 
     def skift(self, billede):
@@ -32,6 +44,8 @@ class Felt():
                 self.button.config(relief="raised", bg="white")
             else:
                 #begynd flyt, skal snakke med logik
+                self.skift(self.bræt.nuværende_bræk)
+                self.check_farve()
                 pass
 
 
@@ -42,8 +56,8 @@ class Bræt:
 
     def __init__(self, root, brækker):
         self.root = root
-
-        self.tildel_billeder(brækker)
+        self.brækker = brækker
+        self.tildel_billeder(self.brækker)
         self.gen_start_lister()
         self.table_fields = []
         self.flyt_bræk = False
@@ -104,22 +118,22 @@ class Bræt:
         for y in range(1,9):
             for x in range(1,9):
                 if y == 1:# tegner alle startbrækkerne i række 1
-                    self.table_fields.append(Felt(self.root, self, self.hvid_start[x-1], x, y))
+                    self.table_fields.append(Felt(self.root, self, self.hvid_start[x-1], x, y, self.brækker))
 
                 elif y == 2:
-                    self.table_fields.append(Felt(self.root, self, self.hvid_start_bønder[x%2], x, y))
+                    self.table_fields.append(Felt(self.root, self, self.hvid_start_bønder[x%2], x, y, self.brækker))
 
                 elif y == 7:
-                    self.table_fields.append(Felt(self.root, self, self.sort_start_bønder[x%2], x, y))
+                    self.table_fields.append(Felt(self.root, self, self.sort_start_bønder[x%2], x, y, self.brækker))
 
                 elif y == 8:# tegner alle startbrækkerne i række 8
-                    self.table_fields.append(Felt(self.root, self, self.sort_start[x - 1], x, y))
+                    self.table_fields.append(Felt(self.root, self, self.sort_start[x - 1], x, y, self.brækker))
 
                 elif (y + x) % 2 == 0: #tegner alle tomme mørke felter
-                    self.table_fields.append(Felt(self.root, self, self.tom_mørk, x, y))
+                    self.table_fields.append(Felt(self.root, self, self.tom_mørk, x, y, self.brækker))
 
                 else: # tegner de sidste felter, altså tomme lyse
-                    self.table_fields.append(Felt(self.root, self, self.tom_lys, x, y))
+                    self.table_fields.append(Felt(self.root, self, self.tom_lys, x, y, self.brækker))
 
                 self.table_fields[len(self.table_fields) - 1].grid(x, y)
                 # gridder knappen ud fra tilhørende koordinater
@@ -131,10 +145,10 @@ class Bræt:
 
 def gen_picts(path, size): #importere og subsampler alle billederne
     brækker = []
-    sort_bonde_mørk = PhotoImage(file=rf"{path}\Assets\sort_bonde_lys.png")
+    sort_bonde_mørk = PhotoImage(file=rf"{path}\Assets\sort_bonde_mørk.png")
     brækker.append(sort_bonde_mørk.subsample(size, size))
 
-    sort_bonde_lys = PhotoImage(file=rf"{path}\Assets\sort_bonde_mørk.png")
+    sort_bonde_lys = PhotoImage(file=rf"{path}\Assets\sort_bonde_lys.png")
     brækker.append(sort_bonde_lys.subsample(size, size))
 
     sort_løber_mørk = PhotoImage(file=rf"{path}\Assets\sort_løber_mørk.png")
