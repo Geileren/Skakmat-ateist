@@ -1,4 +1,4 @@
-Bræt = [[' ' for i in range(8)]for i in range(8)]
+Braet = [[' ' for i in range(8)]for i in range(8)]
 
 #Laver en klasse til brikkerne som viser hvilket hold, type og om den kan dræbes eller ej
 class Brik:
