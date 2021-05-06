@@ -16,6 +16,7 @@ class Felt():
         if (self.x + self.y) % 2 == 0:
             if self.brækker.index(self.bræk) % 2 != 0:
                 self.skift(self.brækker[self.brækker.index(self.bræk) - 1])
+
             else:
                 pass
         else:
@@ -65,14 +66,15 @@ class Bræt:
         self.flyt_bræk_pos = ""
 
 
+
     def gen_start_lister(self):
         self.sort_start = [self.sort_tårn_lys, self.sort_springer_mørk, self.sort_løber_lys, self.sort_dronning_mørk, self.sort_konge_lys, self.sort_løber_mørk, self.sort_springer_lys, self.sort_tårn_mørk]
         # liste svarrende til startpositionen for sorte brækker på række 8
         self.hvid_start = [self.hvid_tårn_mørk, self.hvid_springer_lys, self.hvid_løber_mørk, self.hvid_dronning_lys, self.hvid_konge_mørk, self.hvid_løber_lys, self.hvid_springer_mørk, self.hvid_tårn_lys]
         # liste svarrende til startpositionen for sorte brækker på række 1
-        self.sort_start_bønder = self.sort_bonde_mørk, self.sort_bonde_lys
+        self.sort_start_bønder = self.sort_bonde_lys, self.sort_bonde_mørk
 
-        self.hvid_start_bønder = self.hvid_bonde_lys, self.hvid_bonde_mørk
+        self.hvid_start_bønder = self.hvid_bonde_mørk, self.hvid_bonde_lys
 
     def tildel_billeder(self, brækker):
         self.sort_bonde_mørk = brækker[0]
@@ -187,10 +189,10 @@ def gen_picts(path, size): #importere og subsampler alle billederne
     tom_lys = PhotoImage(file=rf"{path}\Assets\tom_lys.png")
     brækker.append(tom_lys.subsample(size, size))
 
-    hvid_bonde_mørk = PhotoImage(file=rf"{path}\Assets\hvid_bonde_lys.png")
+    hvid_bonde_mørk = PhotoImage(file=rf"{path}\Assets\hvid_bonde_mørk.png")
     brækker.append(hvid_bonde_mørk.subsample(size, size))
 
-    hvid_bonde_lys = PhotoImage(file=rf"{path}\Assets\hvid_bonde_mørk.png")
+    hvid_bonde_lys = PhotoImage(file=rf"{path}\Assets\hvid_bonde_lys.png")
     brækker.append(hvid_bonde_lys.subsample(size, size))
 
     hvid_løber_mørk = PhotoImage(file=rf"{path}\Assets\hvid_løber_mørk.png")
