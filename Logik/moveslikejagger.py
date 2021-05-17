@@ -15,7 +15,7 @@ def fremhaev(Braet):
     fremhaevet = [] # Opretter en liste over potentielle træk
     for i in range(len(Braet)): # Kører et for loop på selve listen for at få en over bredden
         for j in range(len(Braet[0])): # Kører derefter et for loop på den første i listen for at få en over længden
-            if Braet[i][j] == "x": # Hvis der er nogle af de felter den tjekker for som er markeret med et x så tilføj dem til listen
+            if Braet[i][j] == 'x ': # Hvis der er nogle af de felter den tjekker for som er markeret med et x så tilføj dem til listen
                 fremhaevet.append((i, j)) # Tilføjer dem til listen
             else:
                 try: # prøv at spørg
@@ -24,7 +24,12 @@ def fremhaev(Braet):
                 except:
                     pass # Altid have et except statement med et pass for safety
     return fremhaevet # returner listen med potentielle træk for den enekelte brik
-
+def reset_Braet(Braet):
+    for i in range(len(Braet)):
+        for j in range(len(Braet[0])):
+            if Braet[i][j] == 'x ':
+                Braet[i][j] = ' '
+    return Braet
 
 # Tjekker Hvilket hold der er valgt, dette gør den ved at finde ud af hvilken runde det er først.
 # Da hvis det er en lige runde så vil %2 returnere 0 som rest da den går op fordi hvid er lige runder
@@ -176,9 +181,9 @@ def konge_traek(position):
 # funktion tjekker et 5x5 grid rundt omkring springeren ligesom ved kongen udover at her tjekker vi valide moves ved at bruge pythagoras
 # Så alt hvor i og j i anden giver 5 er altså et valid træk for springeren
 def springer_traek(position):
-    for i in range(5): 
+    for i in range(5):
         for j in range(5):
-            if (i-2)**2 + (j-2)**2 == 5: # Pythagoras tjekket sker her
+            if (i-2)**2 + (j-2)**2 == 5: # Pythagoras tjekket sker her. Der trækkes 2 fra fordi ligesom ved kongen skal springeren være i midten
                 if paa_bord((position[0]+i-2,position[1]+j-2)): # tjekker om positionen overhovedet er på brættet
                     if Braet[position[0]+i-2][position[1]+j-2] == ' ': # Som altid hvis der ikke er noget
                         Braet[position[0]+i-2][position[1]+j-2] = 'x ' # så tilføjer vi et x
@@ -193,8 +198,12 @@ ginga = 3
 gunga = 3
 
 gingagunga = ginga,gunga
+
+springer_traek(gingagunga)
 print(Braet)
-print(springer_traek(gingagunga))
+print(fremhaev(Braet))
+reset_Braet(Braet)
+print(Braet)
 
 # lav_braet(Braet)
 
