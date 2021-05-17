@@ -176,14 +176,14 @@ def konge_traek(position):
 # funktion tjekker et 5x5 grid rundt omkring springeren ligesom ved kongen udover at her tjekker vi valide moves ved at bruge pythagoras
 # Så alt hvor i og j i anden giver 5 er altså et valid træk for springeren
 def springer_traek(position):
-    for i in range(-2,3): # Kører fra -2 til 3 fordi springeren skal være i midten
-        for j in range(-2,3): # igen kører -2 til 3 fordi springeren skal være i midten
-            if i**2 + j**2 == 5: # Pythagoras tjekket sker her
-                if paa_bord((position[0]+i,position[1]+j)): # tjekker om positionen overhovedet er på brættet
-                    if Braet[position[0]+i][position[1]+j] == ' ': # Som altid hvis der ikke er noget
-                        Braet[position[0]+i][position[1]+j] = 'x ' # så tilføjer vi et x
+    for i in range(5): 
+        for j in range(5):
+            if (i-2)**2 + (j-2)**2 == 5: # Pythagoras tjekket sker her
+                if paa_bord((position[0]+i-2,position[1]+j-2)): # tjekker om positionen overhovedet er på brættet
+                    if Braet[position[0]+i-2][position[1]+j-2] == ' ': # Som altid hvis der ikke er noget
+                        Braet[position[0]+i-2][position[1]+j-2] = 'x ' # så tilføjer vi et x
                     else:
-                        if Braet[position[0]+i][position[1]+j].hold != Braet[position[0]][position[1]].hold: # Hvis der er noget så tjekker vi om det er samme hold
+                        if Braet[position[0]+i-2][position[1]+j-2].hold != Braet[position[0]][position[1]].hold: # Hvis der er noget så tjekker vi om det er samme hold
                             Braet[position[0]][position[1]].kandræbes = True # Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
     return Braet
 
