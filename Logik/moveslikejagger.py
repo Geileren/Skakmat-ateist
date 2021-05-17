@@ -2,6 +2,7 @@ from Data.Brikker import *
 
 print(Braet)
 
+
 #Returnerer sandt hvis det træk der er regnet ud er indenfor brættets længde og bredde ved at opfylde kravene der hedder at det skal være større end -1 både længde og bredde
 #og det skal være mindre end 8 både længde og bredde da python lister jo er 0 indekserede selvom brættet er 8x8 lang og bred
 def paa_bord(placering):
@@ -193,7 +194,7 @@ gunga = 4
 
 gingagunga = ginga,gunga
 
-print(springer_traek(gingagunga))
-#print(lober_traek(gingagunga))
-#print(dronning_traek(gingagunga))
-#print(bonde_traek_s(gingagunga))
+lav_braet(Braet)
+print(Braet)
+
+print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 0))

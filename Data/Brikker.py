@@ -20,3 +20,13 @@ sd = Brik("s", "d")
 hd = Brik("h", "d")
 sl = Brik("s", "l")
 hl = Brik("h", "l")
+
+def lav_braet(braet):
+    braet[0] = [Brik("s", "t"), Brik("s", "s"), Brik("s", "l"), Brik("s", "d"), Brik("s", "k"), Brik("s", "l"), Brik("s", "s"), Brik("s", "t")]
+    braet[7] = [Brik("h", "t"), Brik("h", "s"), Brik("h", "l"), Brik("h", "d"), Brik("h", "k"), Brik("h", "l"), Brik("h", "s"), Brik("h", "t")]
+
+    for i in range(8):
+        braet[1][i] = Brik("s", "b")
+        braet[6][i] = Brik("h", "b")
+    return braet
+
