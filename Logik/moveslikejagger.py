@@ -1,11 +1,6 @@
 from Data.Brikker import *
 
 
-class b(Brik):
-    def __init__(self):
-        pass
-
-
 print(Braet)
 
 
@@ -43,10 +38,10 @@ def reset_Braet(Braet):
 def tjek_hold(traek, position):
     row, col = position
     if traek % 2 == 0:
-        if Braet[row][col].b.hold == "h":
+        if Braet[row][col].hold == 'h':
             return True
     else:
-        if Braet[row][col].b.hold == "s":
+        if Braet[row][col].hold == 's':
             return True
 
 # Funktion der henter træksættet til den valgte brik, dette gør den ud fra nogle simple if funktioner
@@ -54,26 +49,26 @@ def tjek_hold(traek, position):
 # Grunden til at vi tjekker hold ved bonden er fordi de kan gå i en retning og derfor vil det være nemmere at lave to forskellgie funktioner til dem efter hvilket hold de er på
 def vaelg_traek(brik, position, traek):
     if tjek_hold(traek, position): # Kører tjek hold funktionen
-        if brik.b.type == "b": # Hvis brikken er af typen bonde
-            if brik.b.hold == "s": # Hvis brikken er af farven sort
+        if brik.type == 'b': # Hvis brikken er af typen bonde
+            if brik.hold == 's': # Hvis brikken er af farven sort
                 return fremhaev(bonde_traek_s(position))
             else: # Ellers må brikken være hvid
                 return fremhaev(bonde_traek_h(position))
 
-    if brik.type == "d": # Hvis brikken er af typen Dronning
-        return fremhaev(dronning_traek(position)) # Fremhæver dronningstræk ud fra fremhæv funktionen og dronningstræk funktion
+        elif brik.type == 'd': # Hvis brikken er af typen Dronning
+            return fremhaev(dronning_traek(position)) # Fremhæver dronningstræk ud fra fremhæv funktionen og dronningstræk funktion
 
-    if brik.type == "k": # Hvis brikken er af typen Konge
-        return fremhaev(konge_traek(position)) # Fremhæver kongenstræk ud fra fremhæv funktionen og kongenstræk funktion
+        elif brik.type == 'k': # Hvis brikken er af typen Konge
+            return fremhaev(konge_traek(position)) # Fremhæver kongenstræk ud fra fremhæv funktionen og kongenstræk funktion
 
-    if brik.type == "s": # Hvis brikken er af typen Springer
-        return fremhaev(springer_traek(position)) # Fremhæver springerenstræk ud fra fremhæv funktionen og springerenstræk funktion
+        elif brik.type == 's': # Hvis brikken er af typen Springer
+            return fremhaev(springer_traek(position)) # Fremhæver springerenstræk ud fra fremhæv funktionen og springerenstræk funktion
 
-    if brik.type == "l": # hvis brikken er af typen Løber
-        return fremhaev(lober_traek(position)) # Fremhæver løberenstræk ud fra fremhæv funktionen og Løberenstræk funktion
+        elif brik.type == 'l': # hvis brikken er af typen Løber
+            return fremhaev(lober_traek(position)) # Fremhæver løberenstræk ud fra fremhæv funktionen og Løberenstræk funktion
 
-    if brik.type == "t": # Hvis brikken er af typen tårn
-        return fremhaev(taarn_traek(position)) # Fremhæver tårnetstræk ud fra fremhæv funktionen og tårnetstræk funktion
+        elif brik.type == 't': # Hvis brikken er af typen tårn
+            return fremhaev(taarn_traek(position)) # Fremhæver tårnetstræk ud fra fremhæv funktionen og tårnetstræk funktion
 
 
 def bonde_traek_s(position):
@@ -91,8 +86,8 @@ def bonde_traek_s(position):
                                                         # Disse to tal går op i 2 og giver 0 rest tilbage derfor vil de blive sendt videre mens den position
                                                         # lige over for vil returnere en rest af 1 og ikke sendt videre
                 try:
-                    if Braet[placering[0]][placering[1]].b.hold == "h": # Tjekker om brikken er modstander holdet
-                        Braet[placering[0]][placering[1]].b.kandræbes = True # Hvis ikke sætter vi brikken som den kan dræbes
+                    if Braet[placering[0]][placering[1]].hold == "h": # Tjekker om brikken er modstander holdet
+                        Braet[placering[0]][placering[1]].kandræbes = True # Hvis ikke sætter vi brikken som den kan dræbes
                 except:
                     pass # Altid godt at have et except statement med et pass så koden ikke sidder fast, jeg har lært noget jørn
             else: # Ellers skal man jo kunne flytte brikken op der hvor den ikke kan dræbe så den bliver sendt herned pga else statementet
@@ -112,8 +107,8 @@ def bonde_traek_h(position):
         if paa_bord(placering):
             if pladserforanh.index(placering) % 2 == 0:
                 try:
-                    if Braet[placering[0]][placering[1]].b.hold == "s":
-                        Braet[placering[0]][placering[1]].b.kandræbes = True
+                    if Braet[placering[0]][placering[1]].hold == "s":
+                        Braet[placering[0]][placering[1]].kandræbes = True
                 except:
                     pass
             else:
@@ -135,8 +130,8 @@ def taarn_traek(position):
                 if Braet[placering[0]][placering[1]] == ' ':# Hvis der ikke står noget
                     Braet[placering[0]][placering[1]] = 'x ' # Så placerer vi et x
                 else:
-                    if Braet[placering[0]][placering[1]].b.hold != Braet[position[0]][position[1]].b.hold:
-                        Braet[placering[0]][placering[1]].b.kandræbes = True
+                    if Braet[placering[0]][placering[1]].hold != Braet[position[0]][position[1]].hold:
+                        Braet[placering[0]][placering[1]].kandræbes = True
 
 
                     break
@@ -161,8 +156,8 @@ def lober_traek(position):
                 if Braet[placering[0]][placering[1]] == ' ': # Hvis der er ikke er noget allerede
                     Braet[placering[0]][placering[1]] = 'x ' # Så marker med et x
                 else:
-                    if Braet[placering[0]][placering[1]].b.hold != Braet[position[0]][position[1]].b.hold: # Her spørger vi om de ikke er det samme hold
-                        Braet[placering[0]][placering[1]].b.kandræbes = True # Hvis de ikke er det samme hold så sæt brikken til at kunne dræbes
+                    if Braet[placering[0]][placering[1]].hold != Braet[position[0]][position[1]].hold: # Her spørger vi om de ikke er det samme hold
+                        Braet[placering[0]][placering[1]].kandræbes = True # Hvis de ikke er det samme hold så sæt brikken til at kunne dræbes
 
                     break
     return Braet
@@ -182,8 +177,8 @@ def konge_traek(position):
                 if Braet[position[0] - 1 + i][position[1] - 1 + j] == ' ': # Tjekker om der er noget på den position
                     Braet[position[0] - 1 + i][position[1] - 1 + j] = 'x ' # hvis ikke så marker med et x
                 else:
-                    if Braet[position[0] - 1 + i][position[1] - 1 + j].b.hold != Braet[position[0]][position[1]].b.hold: # Hvis der er noget så tjekker vi om det er samme hold
-                        Braet[position[0]][position[1]].b.kandræbes = True # Hvis ikke så sætter vi brikken der står der til at den kan dræbes
+                    if Braet[position[0] - 1 + i][position[1] - 1 + j].hold != Braet[position[0]][position[1]].hold: # Hvis der er noget så tjekker vi om det er samme hold
+                        Braet[position[0]][position[1]].kandræbes = True # Hvis ikke så sætter vi brikken der står der til at den kan dræbes
     return Braet
 
 # funktion tjekker et 5x5 grid rundt omkring springeren ligesom ved kongen udover at her tjekker vi valide moves ved at bruge pythagoras
@@ -196,17 +191,17 @@ def springer_traek(position):
                     if Braet[position[0]+i-2][position[1]+j-2] == ' ': # Som altid hvis der ikke er noget
                         Braet[position[0]+i-2][position[1]+j-2] = 'x ' # så tilføjer vi et x
                     else:
-                        if Braet[position[0]+i-2][position[1]+j-2].b.hold != Braet[position[0]][position[1]].b.hold: # Hvis der er noget så tjekker vi om det er samme hold
-                            Braet[position[0]][position[1]].b.kandræbes = True # Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
+                        if Braet[position[0]+i-2][position[1]+j-2].hold != Braet[position[0]][position[1]].hold: # Hvis der er noget så tjekker vi om det er samme hold
+                            Braet[position[0]][position[1]].kandræbes = True # Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
     return Braet
 
 
 
-ginga = 3
-gunga = 3
+ginga = 1
+gunga = 6
 
 gingagunga = ginga,gunga
-
+print(Braet)
 lav_braet(Braet)
 print(Braet)
 #springer_traek(gingagunga)
@@ -218,4 +213,4 @@ print(Braet)
 # lav_braet(Braet)
 
 
-print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 1))
+print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 3))
