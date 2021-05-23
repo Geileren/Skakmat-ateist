@@ -58,7 +58,6 @@ def vaelg_traek(brik, position, traek):
             if brik.hold == 's': # Hvis brikken er af farven sort
                 return fremhaev(bonde_traek_s(position))
             else: # Ellers må brikken være hvid
-                print("Hej")
                 return fremhaev(bonde_traek_h(position))
 
         elif brik.type == 'd': # Hvis brikken er af typen Dronning
