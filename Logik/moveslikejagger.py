@@ -196,16 +196,16 @@ def springer_traek(position):
                     if Braet[position[0]+i-2][position[1]+j-2] == ' ': # Som altid hvis der ikke er noget
                         Braet[position[0]+i-2][position[1]+j-2] = 'x ' # så tilføjer vi et x
                     else:
-                        if Braet[position[0]+i-2][position[1]+j-2].hold != Braet[position[0]][position[1]].hold: # Hvis der er noget så tjekker vi om det er samme hold
+                        if Braet[position[0]+(i-2)][position[1]+(j-2)].hold != Braet[position[0]][position[1]].hold: # Hvis der er noget så tjekker vi om det er samme hold
                             Braet[position[0]][position[1]].kandræbes = True # Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
     return Braet
 
 
 
-#ginga = 6
-gunga = 7
+ginga = 1
+gunga = 4
 
-#gingagunga = ginga,gunga
+gingagunga = ginga,gunga
 #print(Braet)
 #lav_braet(Braet)
 #print(Braet)
@@ -215,7 +215,7 @@ gunga = 7
 #reset_Braet(Braet)
 #print(Braet)
 
-# lav_braet(Braet)
+lav_braet(Braet)
 
 
-#print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 2))
+print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 1))

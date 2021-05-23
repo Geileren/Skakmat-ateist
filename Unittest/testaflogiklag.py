@@ -59,6 +59,14 @@ class testaflogiklag(unittest.TestCase):
         springer_traek(pos)
         self.assertEqual(len(fremhaev(Braet)), 8)
 
+    def test8(self):
+        x = 1
+        y = 4
+        pos = x,y
+        lav_braet(Braet)
+        print(Braet)
+        self.assertEqual(len(vaelg_traek(Braet([x][y]), pos, 1)), 2)
+
 
 
 if __name__ == "__main__":
