@@ -92,7 +92,7 @@ def bonde_traek_s(position):
                                                         # Disse to tal går op i 2 og giver 0 rest tilbage derfor vil de blive sendt videre mens den position
                                                         # lige over for vil returnere en rest af 1 og ikke sendt videre
                 try:
-                    if Braet[placering[0]][placering[1]].hold == 'h': # Tjekker om brikken er modstander holdet
+                    if Braet[placering[0]][placering[1]].hold != Braet[position[0]][position[1]].hold: # Tjekker om brikken er modstander holdet
                         Braet[placering[0]][placering[1]].kandræbes = True # Hvis ikke sætter vi brikken som den kan dræbes
                 except:
                     pass # Altid godt at have et except statement med et pass så koden ikke sidder fast, jeg har lært noget jørn
@@ -113,7 +113,7 @@ def bonde_traek_h(position):
         if paa_bord(placering):
             if pladserforanh.index(placering) % 2 == 0:
                 try:
-                    if Braet[placering[0]][placering[1]].hold == 's':
+                    if Braet[placering[0]][placering[1]].hold != Braet[position[0]][position[1]].hold:
                         Braet[placering[0]][placering[1]].kandræbes = True
                 except:
                     pass
@@ -204,7 +204,7 @@ def springer_traek(position):
 
 
 ginga = 6
-gunga = 6
+gunga = 7
 
 gingagunga = ginga,gunga
 print(Braet)
