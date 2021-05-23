@@ -1,6 +1,6 @@
-#import Logik.moveslikejagger as mv_logik
+import Logik.moveslikejagger as mv
 from tkinter import *
-#from PIL import Image, ImageTk
+
 import sys
 class Felt():
     def __init__(self, root, bræt, billede, x, y, brikker, type):
@@ -8,13 +8,19 @@ class Felt():
         self.bræt = bræt
         self.billede = billede
         self.type = type
+        self.fremhævet = False
         self.x = x
         self.y = y
         self.button = Button(root, image=self.billede, command=self.tryk)
 
 
+    def fremhæv(self):
+        self.button.config(bg="yellow")
+        self.fremhævet = True
 
-
+    def glem(self):
+        self.button.config(bg="white")
+        self.fremhævet = False
 
     def check_farve(self):
         if (self.x + self.y) % 2 == 0:# tjekker om feltet skal være mørkt
@@ -41,7 +47,11 @@ class Felt():
         self.button.grid(column=x, row=y)
 
     def tryk(self):
-        if self.type == "tom" and self.bræt.flyt_brik == False: #er der ikke valgt en brik kan man ikke vælge et tomt felt
+
+        if self.type == "tom" and self.bræt.flyt_brik == False:  # er der ikke valgt en brik kan man ikke vælge et tomt felt
+            pass
+
+        elif self.type != "tom" and self.bræt.flyt_brik == False and mv.tjek_hold(self.bræt.runde, [self.y, self.x]) == None: #hvis forkert farve brik vælges
             pass
 
         elif self.bræt.flyt_brik == False: #hvis der ikke er valgt en brik endnu
@@ -50,20 +60,29 @@ class Felt():
             self.bræt.flyt_brik_pos = [self.x, self.y]
             self.bræt.eks_felt = self
             self.button.config(relief="sunken", bg="yellow")
+            #skal bede om fremhævet flytte steder fra logik
+            self.bræt.fremhæver(mv.vaelg_traek(mv.Braet[self.y][self.x], [self.y, self.x], self.bræt.runde))
+
+
 
         elif self.bræt.flyt_brik == True: #hvis der allerede er valgt en brik
             if self.x == self.bræt.flyt_brik_pos[0] and self.y == self.bræt.flyt_brik_pos[1]: # er den samme brik valgt
                 self.bræt.flyt_brik = False
                 self.bræt.eks_felt = ""
                 self.button.config(relief="raised", bg="white")
-            else:
-                #begynd flyt, skal snakke med logik
-
+                self.bræt.glem_fremhævet()
+                mv.reset_Braet(mv.Braet)
+            elif self.fremhævet == True:
+                #skal flytte til fremhævet ellers skal intet ske
+                self.bræt.runde += 1
                 self.bræt.flyt_brik = False
                 self.skift(self.bræt.nuværende_brik)
                 self.check_farve()
                 self.bræt.tøm_felt()
-                #mv_logik.vaelg_traek()
+                mv.flyt_brik([self.x, self.y], [self.bræt.flyt_brik_pos[0], self.bræt.flyt_brik_pos[1]])
+                self.bræt.glem_fremhævet()
+            else:
+                pass
 
 
     def tøm(self):
@@ -86,6 +105,25 @@ class Bræt:
         self.nuværende_brik = ""
         self.flyt_brik_pos = ""
         self.eks_felt = ""
+        self.runde = 1
+        self.fremhævet = []
+
+    def fremhæver(self, muligheder):
+        for i in muligheder:
+            for felt in self.table_fields:
+                if i[1] == felt.x and i[0] == felt.y:
+                    felt.fremhæv()
+                    self.fremhævet.append(felt)
+
+
+    def glem_fremhævet(self):
+        for felt in self.fremhævet:
+            felt.glem()
+        self.fremhævet = []
+
+
+
+
 
     def tøm_felt(self):
         self.eks_felt.tøm()
@@ -147,24 +185,24 @@ class Bræt:
         for y in range(1,9):
             for x in range(1,9):
                 if y == 1:# tegner alle startbrækkerne i række 1
-                    self.table_fields.append(Felt(self.root, self, self.hvid_start[x-1], x, y, self.brækker, self.type_liste[x-1]))
+                    self.table_fields.append(Felt(self.root, self, self.hvid_start[x-1], x-1, y-1, self.brækker, self.type_liste[x-1]))
 
                 elif y == 2:
-                    self.table_fields.append(Felt(self.root, self, self.hvid_start_bønder[x%2], x, y, self.brækker, "bonde"))
+                    self.table_fields.append(Felt(self.root, self, self.hvid_start_bønder[x%2], x-1, y-1, self.brækker, "bonde"))
 
                 elif y == 7:
-                    self.table_fields.append(Felt(self.root, self, self.sort_start_bønder[x%2], x, y, self.brækker, "bonde"))
+                    self.table_fields.append(Felt(self.root, self, self.sort_start_bønder[x%2], x-1, y-1, self.brækker, "bonde"))
 
                 elif y == 8:# tegner alle startbrækkerne i række 8
-                    self.table_fields.append(Felt(self.root, self, self.sort_start[x - 1], x, y, self.brækker, self.type_liste[x-1]))
+                    self.table_fields.append(Felt(self.root, self, self.sort_start[x - 1], x-1, y-1, self.brækker, self.type_liste[x-1]))
 
                 elif (y + x) % 2 == 0: #tegner alle tomme mørke felter
-                    self.table_fields.append(Felt(self.root, self, self.tom_mørk, x, y, self.brækker, "tom"))
+                    self.table_fields.append(Felt(self.root, self, self.tom_mørk, x-1, y-1, self.brækker, "tom"))
 
                 else: # tegner de sidste felter, altså tomme lyse
-                    self.table_fields.append(Felt(self.root, self, self.tom_lys, x, y, self.brækker, "tom"))
+                    self.table_fields.append(Felt(self.root, self, self.tom_lys, x-1, y-1, self.brækker, "tom"))
 
-                self.table_fields[len(self.table_fields) - 1].grid(x, y)
+                self.table_fields[len(self.table_fields) - 1].grid(x-1, y-1)
                 # gridder knappen ud fra tilhørende koordinater
                 # dermed tegnes alle felter
 
@@ -258,7 +296,8 @@ def gen_picts(path, size): #importere og subsampler alle billederne
 
 def main():
     root = Tk()
-    path = sys.path[0]
+    path = sys.path[0] #angiver pathen til GUI mappen
+
 
 
     b = Bræt(root, gen_picts(path, 3))

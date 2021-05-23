@@ -200,7 +200,11 @@ def springer_traek(position):
                             Braet[position[0]][position[1]].kandræbes = True # Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
     return Braet
 
-
+def flyt_brik(ny_pos, gammel_pos):
+    brik = Braet[gammel_pos[1]][gammel_pos[0]]
+    Braet[gammel_pos[1]][gammel_pos[0]] = ' '
+    Braet[ny_pos[1]][ny_pos[0]] = brik
+    reset_Braet(Braet)
 
 #ginga = 1
 #gunga = 4
@@ -215,7 +219,7 @@ def springer_traek(position):
 #reset_Braet(Braet)
 #print(Braet)
 
-#lav_braet(Braet)
+lav_braet(Braet)
 
 
 #print(len(vaelg_traek((Braet[ginga][gunga]), gingagunga, 1)))
