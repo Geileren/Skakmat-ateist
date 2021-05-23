@@ -1,7 +1,7 @@
 from Data.Brikker import *
 
 
-print(Braet)
+#print(Braet)
 
 
 # Returnerer sandt hvis det træk der er regnet ud er indenfor brættets længde og bredde ved at opfylde kravene der hedder at det skal være større end -1 både længde og bredde
@@ -14,8 +14,8 @@ def paa_bord(placering):
 # over mulige træk som et 2d array, altså i og j er vores x og y koordinat på brættet.
 def fremhaev(Braet):
     fremhaevet = [] # Opretter en liste over potentielle træk
-    for i in range(len(Braet)): # Kører et for loop på selve listen for at få en over bredden
-        for j in range(len(Braet[0])): # Kører derefter et for loop på den første i listen for at få en over længden
+    for i in range(8): # Kører et for loop på selve listen for at få en over bredden
+        for j in range(8): # Kører derefter et for loop på den første i listen for at få en over længden
             if Braet[i][j] == 'x ': # Hvis der er nogle af de felter den tjekker for som er markeret med et x så tilføj dem til listen
                 fremhaevet.append((i, j)) # Tilføjer dem til listen
             else:
@@ -27,8 +27,8 @@ def fremhaev(Braet):
     return fremhaevet # returner listen med potentielle træk for den enekelte brik
 
 def reset_Braet(Braet):
-    for i in range(len(Braet)):
-        for j in range(len(Braet[0])):
+    for i in range(8):
+        for j in range(8):
             if Braet[i][j] == 'x ':
                 Braet[i][j] = ' '
             else:
@@ -202,13 +202,13 @@ def springer_traek(position):
 
 
 
-ginga = 6
+#ginga = 6
 gunga = 7
 
-gingagunga = ginga,gunga
-print(Braet)
-lav_braet(Braet)
-print(Braet)
+#gingagunga = ginga,gunga
+#print(Braet)
+#lav_braet(Braet)
+#print(Braet)
 #springer_traek(gingagunga)
 #print(Braet)
 #print(fremhaev(Braet))
@@ -218,4 +218,4 @@ print(Braet)
 # lav_braet(Braet)
 
 
-print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 2))
+#print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 2))

@@ -3,9 +3,6 @@ import unittest
 
 class Testafdatalag(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
     def test1(self):
         a = Braet
         b = lav_braet(Braet)
