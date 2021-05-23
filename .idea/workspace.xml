@@ -171,7 +171,7 @@
       <workItem from="1621233028210" duration="5915000" />
       <workItem from="1621494803976" duration="9041000" />
       <workItem from="1621776613771" duration="11629000" />
-      <workItem from="1621791105500" duration="1762000" />
+      <workItem from="1621791105500" duration="2638000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'main' of github.com:Geileren/Skakmat-ateist into main&#10;&#10;# Conflicts:&#10;#&#9;.idea/Skakmat-ateist.iml&#10;#&#9;.idea/misc.xml&#10;#&#9;.idea/workspace.xml">
       <created>1618486386251</created>
@@ -223,22 +223,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1060" y="441" key="FileChooserDialogImpl/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621778021096" />
-    <state width="2517" height="403" key="GridCell.Tab.0.bottom" timestamp="1621792585210">
+    <state width="2517" height="403" key="GridCell.Tab.0.bottom" timestamp="1621793363837">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="403" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621792585210" />
-    <state width="2517" height="403" key="GridCell.Tab.0.center" timestamp="1621792585210">
+    <state width="2517" height="403" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621793363837" />
+    <state width="2517" height="403" key="GridCell.Tab.0.center" timestamp="1621793363837">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="403" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621792585210" />
-    <state width="2517" height="403" key="GridCell.Tab.0.left" timestamp="1621792585210">
+    <state width="2517" height="403" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621793363837" />
+    <state width="2517" height="403" key="GridCell.Tab.0.left" timestamp="1621793363837">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="403" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621792585210" />
-    <state width="2517" height="403" key="GridCell.Tab.0.right" timestamp="1621792585210">
+    <state width="2517" height="403" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621793363837" />
+    <state width="2517" height="403" key="GridCell.Tab.0.right" timestamp="1621793363837">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="403" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621792585210" />
+    <state width="2517" height="403" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1621793363837" />
     <state width="2517" height="492" key="GridCell.Tab.1.bottom" timestamp="1621791096665">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -258,7 +258,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Skakmat_ateist$Test.coverage" NAME="Test Coverage Results" MODIFIED="1618215296332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Skakmat_ateist$Unittests_in_testaflogiklag_py.coverage" NAME="Unittests in testaflogiklag.py Coverage Results" MODIFIED="1621792585203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Unittest" />
+    <SUITE FILE_PATH="coverage/Skakmat_ateist$Unittests_in_testaflogiklag_py.coverage" NAME="Unittests in testaflogiklag.py Coverage Results" MODIFIED="1621793363831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Unittest" />
     <SUITE FILE_PATH="coverage/Skakmat_ateist$Unittests_for_testaflogiklag_testaflogiklag_test8.coverage" NAME="Unittests for testaflogiklag.testaflogiklag.test8 Coverage Results" MODIFIED="1621792381003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Unittest" />
     <SUITE FILE_PATH="coverage/Skakmat_ateist$Unittests_for_testaflogiklag_testaflogiklag.coverage" NAME="Unittests for testaflogiklag.testaflogiklag Coverage Results" MODIFIED="1621790243330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Unittest" />
     <SUITE FILE_PATH="coverage/Skakmat_ateist$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1620301171860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GUI" />
