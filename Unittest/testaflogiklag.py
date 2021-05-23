@@ -60,14 +60,19 @@ class testaflogiklag(unittest.TestCase):
         self.assertEqual(len(fremhaev(Braet)), 8)
 
     def test8(self):
+        reset_Braet(Braet)
+        lav_braet(Braet)
         x = 1
         y = 4
         pos = x,y
-        lav_braet(Braet)
-        print(Braet)
-        self.assertEqual(len(vaelg_traek(Braet([x][y]), pos, 1)), 2)
+        self.assertEqual(vaelg_traek((Braet[x][y]), pos, 1), [(2, 4), (3, 4)])
 
-
+    def test9(self):
+        reset_Braet(Braet)
+        Braet[4] = [' ',' ',' ','x ',' ',' ',' ',' ']
+        self.assertIn( 'x ', Braet[4])
+        reset_Braet(Braet)
+        self.assertNotIn('x ', Braet)
 
 if __name__ == "__main__":
     unittest.main()
