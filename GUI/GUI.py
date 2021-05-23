@@ -1,63 +1,74 @@
-import tkinter
+#import Logik.moveslikejagger as mv_logik
 from tkinter import *
 #from PIL import Image, ImageTk
 import sys
 class Felt():
-    def __init__(self, root, bræt, billede, x, y, brikker):
+    def __init__(self, root, bræt, billede, x, y, brikker, type):
         self.brikker = brikker
         self.bræt = bræt
-        self.brik = billede
+        self.billede = billede
+        self.type = type
         self.x = x
         self.y = y
-        self.button = Button(root, image=self.brik, command=self.tryk)
+        self.button = Button(root, image=self.billede, command=self.tryk)
+
+
+
 
 
     def check_farve(self):
-        if (self.x + self.y) % 2 == 0:
-            if self.brikker.index(self.brik) % 2 != 0:
-                self.skift(self.brikker[self.brikker.index(self.brik) - 1])
-
-            else:
+        if (self.x + self.y) % 2 == 0:# tjekker om feltet skal være mørkt
+            if self.brikker.index(self.billede) % 2 != 0:# hvis feltet ikke er mørkt
+                self.skift([self.brikker[self.brikker.index(self.billede) - 1], self.type])# skiftes til mørk version af samme brik
+            else: # feltet har korrekt farve
                 pass
+
         else:
-            if self.brikker.index(self.brik) % 2 != 1:
-                self.skift(self.brikker[self.brikker.index(self.brik) + 1])
-            else:
+            if self.brikker.index(self.billede) % 2 != 1: # hvis feltet ikke er lyst
+                self.skift([self.brikker[self.brikker.index(self.billede) + 1], self.type]) # skiftes til lys version af samme brik
+            else: # feltet har korrekt farve
                 pass
 
 
-    def skift(self, billede):
-        self.brik = billede
-        self.button.config(image=self.brik)
+    def skift(self, brik):
+
+        self.billede = brik[0]
+        self.type = brik[1]
+        self.button.config(image=self.billede, relief="raised", bg="white")
+
 
     def grid(self, x, y):
         self.button.grid(column=x, row=y)
 
     def tryk(self):
-        if self.bræt.flyt_brik == False:
+        if self.type == "tom" and self.bræt.flyt_brik == False: #er der ikke valgt en brik kan man ikke vælge et tomt felt
+            pass
+
+        elif self.bræt.flyt_brik == False: #hvis der ikke er valgt en brik endnu
             self.bræt.flyt_brik = True
-            self.bræt.nuværende_brik = self.brik
-            self.bræt.flyt_brik_pos = self.x, self.y
+            self.bræt.nuværende_brik = [self.billede, self.type]
+            self.bræt.flyt_brik_pos = [self.x, self.y]
             self.bræt.eks_felt = self
             self.button.config(relief="sunken", bg="yellow")
-        elif self.bræt.flyt_brik == True:
-            if self.x == self.bræt.flyt_brik_pos[0] and self.y == self.bræt.flyt_brik_pos[1]:
+
+        elif self.bræt.flyt_brik == True: #hvis der allerede er valgt en brik
+            if self.x == self.bræt.flyt_brik_pos[0] and self.y == self.bræt.flyt_brik_pos[1]: # er den samme brik valgt
                 self.bræt.flyt_brik = False
                 self.bræt.eks_felt = ""
                 self.button.config(relief="raised", bg="white")
             else:
                 #begynd flyt, skal snakke med logik
 
+                self.bræt.flyt_brik = False
                 self.skift(self.bræt.nuværende_brik)
                 self.check_farve()
                 self.bræt.tøm_felt()
+                #mv_logik.vaelg_traek()
 
 
     def tøm(self):
-        self.bræt.flyt_brik = False
-        self.skift(self.brikker[12])
+        self.skift([self.brikker[12], "tom"])
         self.check_farve()
-        self.button.config(relief="raised", bg="white")
 
 
 
@@ -78,15 +89,19 @@ class Bræt:
 
     def tøm_felt(self):
         self.eks_felt.tøm()
+        self.nuværende_brik = ""
 
     def gen_start_lister(self):
         self.sort_start = [self.sort_tårn_lys, self.sort_springer_mørk, self.sort_løber_lys, self.sort_dronning_mørk, self.sort_konge_lys, self.sort_løber_mørk, self.sort_springer_lys, self.sort_tårn_mørk]
         # liste svarrende til startpositionen for sorte brækker på række 8
         self.hvid_start = [self.hvid_tårn_mørk, self.hvid_springer_lys, self.hvid_løber_mørk, self.hvid_dronning_lys, self.hvid_konge_mørk, self.hvid_løber_lys, self.hvid_springer_mørk, self.hvid_tårn_lys]
-        # liste svarrende til startpositionen for sorte brækker på række 1
+        # liste svarrende til startpositionen for hvide brækker på række 1
+
         self.sort_start_bønder = self.sort_bonde_lys, self.sort_bonde_mørk
 
         self.hvid_start_bønder = self.hvid_bonde_mørk, self.hvid_bonde_lys
+
+        self.type_liste = ["tårn", "springer", "løber", "dronning", "konge", "løber", "springer", "tårn"]
 
     def tildel_billeder(self, brikker):
         self.sort_bonde_mørk = brikker[0]
@@ -132,25 +147,26 @@ class Bræt:
         for y in range(1,9):
             for x in range(1,9):
                 if y == 1:# tegner alle startbrækkerne i række 1
-                    self.table_fields.append(Felt(self.root, self, self.hvid_start[x-1], x, y, self.brækker))
+                    self.table_fields.append(Felt(self.root, self, self.hvid_start[x-1], x, y, self.brækker, self.type_liste[x-1]))
 
                 elif y == 2:
-                    self.table_fields.append(Felt(self.root, self, self.hvid_start_bønder[x%2], x, y, self.brækker))
+                    self.table_fields.append(Felt(self.root, self, self.hvid_start_bønder[x%2], x, y, self.brækker, "bonde"))
 
                 elif y == 7:
-                    self.table_fields.append(Felt(self.root, self, self.sort_start_bønder[x%2], x, y, self.brækker))
+                    self.table_fields.append(Felt(self.root, self, self.sort_start_bønder[x%2], x, y, self.brækker, "bonde"))
 
                 elif y == 8:# tegner alle startbrækkerne i række 8
-                    self.table_fields.append(Felt(self.root, self, self.sort_start[x - 1], x, y, self.brækker))
+                    self.table_fields.append(Felt(self.root, self, self.sort_start[x - 1], x, y, self.brækker, self.type_liste[x-1]))
 
                 elif (y + x) % 2 == 0: #tegner alle tomme mørke felter
-                    self.table_fields.append(Felt(self.root, self, self.tom_mørk, x, y, self.brækker))
+                    self.table_fields.append(Felt(self.root, self, self.tom_mørk, x, y, self.brækker, "tom"))
 
                 else: # tegner de sidste felter, altså tomme lyse
-                    self.table_fields.append(Felt(self.root, self, self.tom_lys, x, y, self.brækker))
+                    self.table_fields.append(Felt(self.root, self, self.tom_lys, x, y, self.brækker, "tom"))
 
                 self.table_fields[len(self.table_fields) - 1].grid(x, y)
                 # gridder knappen ud fra tilhørende koordinater
+                # dermed tegnes alle felter
 
 
 
@@ -250,4 +266,3 @@ def main():
     mainloop()
 
 main()
-
