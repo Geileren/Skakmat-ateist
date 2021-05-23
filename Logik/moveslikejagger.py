@@ -31,6 +31,11 @@ def reset_Braet(Braet):
         for j in range(len(Braet[0])):
             if Braet[i][j] == 'x ':
                 Braet[i][j] = ' '
+            else:
+                try:
+                    Braet[i][j].kandræbes = False
+                except:
+                    pass
     return Braet
 
 # Tjekker Hvilket hold der er valgt, dette gør den ved at finde ud af hvilken runde det er først.
@@ -53,6 +58,7 @@ def vaelg_traek(brik, position, traek):
             if brik.hold == 's': # Hvis brikken er af farven sort
                 return fremhaev(bonde_traek_s(position))
             else: # Ellers må brikken være hvid
+                print("Hej")
                 return fremhaev(bonde_traek_h(position))
 
         elif brik.type == 'd': # Hvis brikken er af typen Dronning
@@ -77,7 +83,7 @@ def bonde_traek_s(position):
             Braet[position[0]+2][position[1]] = 'x '
     # Før laver vi en liste med de 3 positioner foran bonden for at se om der er noget den kan dræbe, dette gør vi
     # ved at oprette tre forskellige sæt koordinator som er lige foran brikken og -1 til den ene side og 2 til den anden side.
-    pladserforans = [[position[0]+1, position[1] + i] for i in range(-1,2)]
+    pladserforans = [[position[0]+1, position[1]+i] for i in range(-1,2)]
 
     for placering in pladserforans: # Tjekker for alle tre positioner fra listen vi lavede oven over
         if paa_bord(placering): # Tjekker om placeringerne er på brættet
@@ -86,7 +92,7 @@ def bonde_traek_s(position):
                                                         # Disse to tal går op i 2 og giver 0 rest tilbage derfor vil de blive sendt videre mens den position
                                                         # lige over for vil returnere en rest af 1 og ikke sendt videre
                 try:
-                    if Braet[placering[0]][placering[1]].hold == "h": # Tjekker om brikken er modstander holdet
+                    if Braet[placering[0]][placering[1]].hold == 'h': # Tjekker om brikken er modstander holdet
                         Braet[placering[0]][placering[1]].kandræbes = True # Hvis ikke sætter vi brikken som den kan dræbes
                 except:
                     pass # Altid godt at have et except statement med et pass så koden ikke sidder fast, jeg har lært noget jørn
@@ -107,7 +113,7 @@ def bonde_traek_h(position):
         if paa_bord(placering):
             if pladserforanh.index(placering) % 2 == 0:
                 try:
-                    if Braet[placering[0]][placering[1]].hold == "s":
+                    if Braet[placering[0]][placering[1]].hold == 's':
                         Braet[placering[0]][placering[1]].kandræbes = True
                 except:
                     pass
@@ -122,7 +128,7 @@ def taarn_traek(position):
     plus = [[[position[0]+i, position[1]] for i in range(1,8)],  # Den første liste er ud til højre derfor tjekker vi fra 1 til 8 minus der hvor den står da vi så ikke tjekker ud over brættets kant
             [[position[0]-i, position[1]] for i in range(1,8)],  # Den anden liste er ud til venstre for den som tjekker fra 1 til dens position 0 ved at trække fra og vi lægger så 1 til da listerne er 0 indekserede
             [[position[0], position[1]+i] for i in range(1,8)],  # Den tredje liste tjekker op af brættet og her gør vi det samme som i lsite udover at det er emd andet koordinatet
-            [[position[0], position[1]-i] for i in range(1,8)]] #D en fjerde liste tjekker ned af brættet og her gør vi det samme som i liste 2 udover med anden koordinatet
+            [[position[0], position[1]-i] for i in range(1,8)]] # Den fjerde liste tjekker ned af brættet og her gør vi det samme som i liste 2 udover med anden koordinatet
 
     for retning in plus: # Deler den store liste op i de forskellige retninger
         for placering in retning: # Tjekker for alle individuelle placeringer i de her retninger
@@ -197,7 +203,7 @@ def springer_traek(position):
 
 
 
-ginga = 1
+ginga = 6
 gunga = 6
 
 gingagunga = ginga,gunga
@@ -213,4 +219,4 @@ print(Braet)
 # lav_braet(Braet)
 
 
-print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 3))
+print(vaelg_traek((Braet[ginga][gunga]), gingagunga, 2))
