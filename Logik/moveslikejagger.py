@@ -200,7 +200,24 @@ def springer_traek(position):
 
 def flyt_brik(ny_pos, gammel_pos):
     brik = Braet[gammel_pos[1]][gammel_pos[0]]
-    Braet[gammel_pos[1]][gammel_pos[0]] = ' '
-    Braet[ny_pos[1]][ny_pos[0]] = brik
-    reset_Braet(Braet)
+    død = Braet[ny_pos[1]][ny_pos[0]]
+    type = ''
+    hold = ""
+    try:
+        type = død.type
+        hold = død.hold
+    except:
+        pass
+    if type == 'k':
+        if hold == 's':
+            return 'sort'
+
+        else:
+            return 'hvid'
+
+    else:
+        Braet[gammel_pos[1]][gammel_pos[0]] = ' '
+        Braet[ny_pos[1]][ny_pos[0]] = brik
+        reset_Braet(Braet)
+        return None
 
