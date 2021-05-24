@@ -38,12 +38,12 @@ def reset_Braet(Braet):
 # Tjekker Hvilket hold der er valgt, dette gør den ved at finde ud af hvilken runde det er først.
 # Da hvis det er en lige runde så vil %2 returnere 0 som rest da den går op fordi hvid er lige runder
 def tjek_hold(traek, position):
-    row, col = position
+    raek, kol = position
     if traek % 2 == 0:
-        if Braet[row][col].hold == 'h':
+        if Braet[raek][kol].hold == 'h':
             return True
     else:
-        if Braet[row][col].hold == 's':
+        if Braet[raek][kol].hold == 's':
             return True
 
 # Funktion der henter træksættet til den valgte brik, dette gør den ud fra nogle simple if funktioner
