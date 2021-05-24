@@ -206,7 +206,7 @@ def flyt_brik(ny_pos, gammel_pos):
     Braet[ny_pos[1]][ny_pos[0]] = brik
     reset_Braet(Braet)
 
-#ginga = 1
+#inga = 1
 #gunga = 4
 
 #gingagunga = ginga,gunga

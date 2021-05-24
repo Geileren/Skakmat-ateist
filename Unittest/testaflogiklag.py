@@ -72,7 +72,7 @@ class testaflogiklag(unittest.TestCase):
         Braet[4] = [' ',' ',' ','x ',' ',' ',' ',' ']
         self.assertIn( 'x ', Braet[4])
         reset_Braet(Braet)
-        self.assertNotIn('x ', Braet)
+        self.assertNotIn('x ', Braet[4])
 
 if __name__ == "__main__":
     unittest.main()
