@@ -1,9 +1,6 @@
 from Data.Brikker import *
 
 
-#print(Braet)
-
-
 # Returnerer sandt hvis det træk der er regnet ud er indenfor brættets længde og bredde ved at opfylde kravene der hedder at det skal være større end -1 både længde og bredde
 # og det skal være mindre end 8 både længde og bredde da python lister jo er 0 indekserede selvom brættet er 8x8 lang og bred
 def paa_bord(placering):
@@ -200,26 +197,10 @@ def springer_traek(position):
                             Braet[position[0]+i-2][position[1]+j-2].kandræbes = True # Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
     return Braet
 
+
 def flyt_brik(ny_pos, gammel_pos):
     brik = Braet[gammel_pos[1]][gammel_pos[0]]
     Braet[gammel_pos[1]][gammel_pos[0]] = ' '
     Braet[ny_pos[1]][ny_pos[0]] = brik
     reset_Braet(Braet)
 
-#inga = 1
-#gunga = 4
-
-#gingagunga = ginga,gunga
-#print(Braet)
-#lav_braet(Braet)
-#print(Braet)
-#springer_traek(gingagunga)
-#print(Braet)
-#print(fremhaev(Braet))
-#reset_Braet(Braet)
-#print(Braet)
-
-lav_braet(Braet)
-
-
-#print(len(vaelg_traek((Braet[ginga][gunga]), gingagunga, 1)))
