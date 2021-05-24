@@ -298,7 +298,7 @@ def main():
     root = Tk()
     path = sys.path[0] #angiver pathen til GUI mappen
 
-
+    mv.lav_braet(mv.Braet)
 
     b = Bræt(root, gen_picts(path, 3))
     b.lav()
