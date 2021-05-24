@@ -183,7 +183,7 @@ def konge_traek(position):
                     Braet[position[0] - 1 + i][position[1] - 1 + j] = 'x ' # hvis ikke så marker med et x
                 else:
                     if Braet[position[0] - 1 + i][position[1] - 1 + j].hold != Braet[position[0]][position[1]].hold: # Hvis der er noget så tjekker vi om det er samme hold
-                        Braet[position[0]][position[1]].kandræbes = True # Hvis ikke så sætter vi brikken der står der til at den kan dræbes
+                        Braet[position[0] - 1 + i][position[1] - 1 + j].kandræbes = True # Hvis ikke så sætter vi brikken der står der til at den kan dræbes
     return Braet
 
 # funktion tjekker et 5x5 grid rundt omkring springeren ligesom ved kongen udover at her tjekker vi valide moves ved at bruge pythagoras
@@ -197,7 +197,7 @@ def springer_traek(position):
                         Braet[position[0]+i-2][position[1]+j-2] = 'x ' # så tilføjer vi et x
                     else:
                         if Braet[position[0]+i-2][position[1]+j-2].hold != Braet[position[0]][position[1]].hold: # Hvis der er noget så tjekker vi om det er samme hold
-                            Braet[position[0]][position[1]].kandræbes = True # Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
+                            Braet[position[0]+i-2][position[1]+j-2].kandræbes = True # Hivs det ikke er samme hold så sætter vi brikken der er i vejen som kandræbes
     return Braet
 
 def flyt_brik(ny_pos, gammel_pos):
